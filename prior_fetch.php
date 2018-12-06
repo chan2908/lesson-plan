@@ -23,11 +23,10 @@ if($name=='' || $access=='' || $id=='' || $email=='' || $company_name=='' || $bi
 
 "; */
 
-								
   
-								$sel_sql1=pg_query($db,"select  employee_id, employee_name,earnings_in_current_fy,month FROM public.prior_earnings where employee_id='1'");
-								//echo "select employee_id, employee_name,earnings_in_current_fy FROM public.prior_earnings";exit;
-								 //$row=pg_fetch_array($sel_sql);
+
+//echo "select employee_id, employee_name,earnings_in_current_fy FROM public.prior_earnings";exit;
+//$row=pg_fetch_array($sel_sql);
 								 
 								  
 
@@ -229,70 +228,64 @@ if($name=='' || $access=='' || $id=='' || $email=='' || $company_name=='' || $bi
 						<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
 						<span style="width: 110px;">Employee_Name</span>
 						</th>
-						
-						<?php 
-						$sel_sql=pg_query($db,"select  month FROM prior_earnings where employee_id='1'");
-
-												while($res=pg_fetch_array($sel_sql)){
-												 //echo $res['month'];exit;
-												 $result=$res['month'];
-												 
-												 //print_r($sel_sql);exit;
-													//echo $result;exit;
-								?>	
-								<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
-						<span style="width: 110px;"><?php echo $result;?></span>
-						</th>					
-							<?php $month=pg_query($db,"select earnings_in_current_fy from prior_earnings where month='$result' and employee_id='1'");
-							//echo "select earnings_in_current_fy from prior_earnings where month='$result' and employee_id='1'";exit;
-                                     while($res=pg_fetch_assoc($month)){
-										 //echo $res;exit;
-												 //echo $res['month'];exit;
-												 $result2=$res['earnings_in_current_fy'];
-												// echo $result2;exit;
-                    							?>
-								<?php }?>
-								
-								<td> <?php echo $result2;?>
-							</td>
-											
-						
-						
-						
-						
-						<?php }?>
-						
-					
-						
-						</tr>
-						</thead>
-						<tbody>
-						
-						
+						<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">APR</span>
+						</th>
+                         <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">MAY</span>
+						</th>
+						  <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">JUN</span>
+						</th>
+						 <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">JUL</span>
+						</th>
+						<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">AUG</span>
+						</th>
+						<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">SEP</span>
+						</th>
+						<th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell">
+						<span style="width: 110px;">OCT</span>
+						</th>																		
 						<?php
+					 	$sel_sql1=pg_query($db,"select  DISTINCT employee_id, employee_name FROM public.prior_earnings where employee_id='1'");
 							while($result1=pg_fetch_array($sel_sql1)){
-								//echo $result;exit;
-						?>
-                  
-								<?php echo "<tr>";?>
+						?>            
+						<?php echo "<tr>";?>
 							<td>
                                  <?php echo $result1['employee_id'];?>
 							</td>
 						    <td>
 								 <?php echo $result1['employee_name']; ?>
-							</td>
-							
-								<?php
-						  } 
-						
+							</td>							    
+						<?php
+						} 						
 						?>	
-                        
-   							
-						 <?php echo "</tr>";?>
-
+						 							   
+						<?php 
+						$sel_sql=pg_query($db,"select month FROM prior_earnings where employee_id='1'");
+								while($res=pg_fetch_array($sel_sql)){								
+							    $result=$res['month'];	
+										 												
+						?>									  	  	
+									
+					    <?php $month=pg_query($db,"select earnings_in_current_fy from prior_earnings where month='$result' and employee_id='1'");							   
+                                while($res=pg_fetch_assoc($month)){
+								$result2=$res['earnings_in_current_fy'];
+								
+						?>		
+                    		   	
+								 <td> <?php echo $result2;?></td>	
+					    <?php }?>
+						<?php }?>
 							
-						
-						</tbody>
+						<?php echo "</tr>";?>			
+						</tr>
+						</thead>
+						<tbody>
+					   </tbody>
 						</table>
 						</div>
 						</div>
@@ -305,11 +298,9 @@ if($name=='' || $access=='' || $id=='' || $email=='' || $company_name=='' || $bi
 										</div>
 									</div>
 								</div>
-								
 						</div>
 					</div>
 			</div>		
-	
  </div>
 </div> 
 </div>
